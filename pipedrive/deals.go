@@ -390,37 +390,13 @@ type DealCreateOptions struct {
 // Pipedrive API docs: https://developers.pipedrive.com/docs/api/v1/#!/Deals/post_deals
 func (s *DealService) Create(ctx context.Context, opt *DealCreateOptions) (*DealResponse, *Response, error) {
 	req, err := s.client.NewRequest(http.MethodPost, "/deals", nil, struct {
-		Title               string    `json:"title"`
-		Value               string    `json:"value"`
-		Currency            string    `json:"currency"`
-		UserID              uint      `json:"user_id"`
-		PersonID            uint      `json:"person_id"`
-		OrgID               uint      `json:"org_id"`
-		StageID             uint      `json:"stage_id"`
-		Status              string    `json:"status"`
-		Probability         uint      `json:"probability"`
-		LostReason          string    `json:"lost_reason"`
-		AddTime             string    `json:"add_time"`
-		VisibleTo           VisibleTo `json:"visible_to"`
-		RequirementAnalysis string    `json:"56d3d40c37c0db60fff576ae73ba2fea0d58dc09"`
-		TemporaryLink       string    `json:"4fe88fad67d8dcbc17d18d9ee1faac55122249fd,omitempty"`
-		LeadSource          uint      `json:"5d4fbabc9b032aeb3df515d9c66994d6892ee062,omitempty"`
+		Title    string `json:"title"`
+		PersonID uint   `json:"person_id"`
+		StageID  uint   `json:"stage_id"`
 	}{
 		opt.Title,
-		opt.Value,
-		opt.Currency,
-		opt.UserID,
 		opt.PersonID,
-		opt.OrgID,
 		opt.StageID,
-		opt.Status,
-		opt.Probability,
-		opt.LostReason,
-		opt.AddTime.FormatFull(),
-		opt.VisibleTo,
-		opt.RequirementAnalysis,
-		opt.TemporaryLink,
-		opt.LeadSource,
 	})
 
 	if err != nil {

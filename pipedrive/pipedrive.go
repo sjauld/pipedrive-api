@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/url"
 	"reflect"
@@ -220,7 +221,9 @@ func (c *Client) Do(ctx context.Context, request *http.Request, v interface{}) (
 		}, err
 	}
 
+	log.Printf("[DEBUG] request: %+v", request)
 	resp, err := c.client.Do(request)
+	log.Printf("[DEBUG] response: %+v", resp)
 
 	if err != nil {
 		select {
